@@ -1,0 +1,8 @@
+.text {
+  font: var(--supplement-l);
+  color: var(--color-description-text);
+
+  &.disabled {
+    color: var(--color-disabled-text);
+  }
+}

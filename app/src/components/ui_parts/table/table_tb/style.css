@@ -1,0 +1,45 @@
+.tabulator {
+  font: var(--text-l);
+  font-family: var(--base-font-family);
+  letter-spacing: var(--letter-spacing-2);
+  background-color: var(--color-bg-primary);
+}
+
+.tabulator .tabulator-header {
+  font-weight: normal;
+  font-weight: bold;
+  color: #343434; /* .def_color 標準フォントカラー */
+  background-color: #f0f0f0;
+}
+
+.tabulator .tabulator-header .tabulator-col:last-of-type {
+  border-right: none;
+}
+
+/* 罫線 */
+.tabulator .tabulator-row {
+  border-bottom: solid var(--color-border-divider);
+}
+
+.tabulator .tabulator-row .tabulator-cell {
+  border-right: solid var(--color-border-divider);
+}
+
+/* 偶数行色を付けるなら↓ */
+.tabulator .tabulator-row.tabulator-row-even {
+  background-color: var(--color-bg-primary);
+}
+
+/* 選択行色↓ */
+.tabulator .tabulator-row.tabulator-selected {
+  background-color: rgb(227 239 255 / 90%);
+}
+
+/* 行：hover↓ */
+.tabulator .tabulator-row:hover {
+  background-color: var(--color-table-cell-hover);
+}
+
+.tabulator .tabulator-row.tabulator-selected:hover {
+  background-color: var(--color-table-cell-hover);
+}

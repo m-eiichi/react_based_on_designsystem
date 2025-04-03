@@ -1,0 +1,87 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  & .button_area {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--grey-500);
+    border-radius: 28px;
+    transition: background-color 0.2s ease;
+
+    &::after {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      content: "";
+      background-color: var(--white);
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  & input[type="checkbox"] {
+    display: none;
+  }
+
+  &.disabled .button_area {
+    background-color: var(--grey-300);
+
+    &::after {
+      background-color: var(--grey-100);
+    }
+  }
+
+  &:not(.disabled) input[type="checkbox"] {
+    display: none;
+
+    &:checked + .button_area {
+      background-color: var(--blue-600);
+    }
+  }
+
+  &.l {
+    width: 112px;
+    height: 56px;
+
+    & .button_area::after {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &.m {
+    width: 80px;
+    height: 40px;
+
+    & .button_area::after {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  &.s {
+    width: 64px;
+    height: 32px;
+
+    & .button_area::after {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &.l input[type="checkbox"]:checked ~ .button_area::after {
+    transform: translateX(56px);
+  }
+
+  &.m input[type="checkbox"]:checked ~ .button_area::after {
+    transform: translateX(40px);
+  }
+
+  &.s input[type="checkbox"]:checked ~ .button_area::after {
+    transform: translateX(32px);
+  }
+}

@@ -1,0 +1,60 @@
+.dialog_content {
+  inset: 0;
+  padding: 0;
+  margin: auto;
+  overflow-y: scroll;
+  background-color: var(--color-bg-primary);
+  border: none;
+  border-radius: var(--radius-m);
+
+  /* IE(Internet Explorer)・Microsoft Edgeへの対応 */
+  -ms-overflow-style: none;
+
+  /* Firefoxへの対応 */
+  scrollbar-width: none;
+}
+
+.size_s {
+  width: calc(100% - var(--size-f-05) - var(--size-f-05));
+  max-height: calc(100vh - var(--size-f-05) - var(--size-f-05));
+}
+
+.size_m {
+  width: calc(100% - var(--size-f-04) - var(--size-f-04));
+  max-height: calc(100vh - var(--size-f-04) - var(--size-f-04));
+}
+
+.size_l {
+  width: calc(100% - var(--size-f-03) - var(--size-f-03));
+  max-height: calc(100vh - var(--size-f-03) - var(--size-f-03));
+}
+
+@media (--viewport-over-tablet) {
+  .size_s {
+    width: min(calc(100% - 128px), 432px);
+    max-height: calc(100vh - var(--size-f-05) - var(--size-f-05));
+  }
+
+  .size_m {
+    width: min(calc(100% - 80px), 640px);
+    max-height: calc(100vh - var(--size-f-04) - var(--size-f-04));
+  }
+
+  .size_l {
+    width: min(calc(100% - 48px), 752px);
+    max-height: calc(100vh - var(--size-f-03) - var(--size-f-03));
+  }
+}
+
+.button_container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-f-01);
+}
+
+@container (min-width: 496px) {
+  .button_container {
+    flex-direction: row;
+    gap: var(--size-f-03);
+  }
+}

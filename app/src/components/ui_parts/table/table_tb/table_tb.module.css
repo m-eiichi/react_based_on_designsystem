@@ -1,0 +1,37 @@
+.tabulator_table {
+  & .cell_l {
+    padding: var(--size-f-01);
+  }
+
+  & .cell_m {
+    padding: var(--size-f-01);
+  }
+
+  & .cell_s {
+    padding: var(--base-size-4px) var(--size-f-01);
+  }
+
+  & .header_l {
+    padding: 0;
+
+    & > div {
+      height: var(--base-size-80px);
+    }
+  }
+
+  & .header_m {
+    padding: 0;
+
+    & > div {
+      height: var(--base-size-48px);
+    }
+  }
+
+  & .header_s {
+    padding: 0;
+
+    & > div {
+      height: var(--base-size-32px);
+    }
+  }
+}

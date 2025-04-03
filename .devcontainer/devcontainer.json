@@ -1,0 +1,20 @@
+{
+  "name": "node20_with_yarn4",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "front_with_yarn4",
+  "workspaceFolder": "/usr/src/app",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "donjayamanne.githistory",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "dbaeumer.vscode-eslint",
+        "vunguyentuan.vscode-css-variables",
+        "Gruntfuggly.todo-tree",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

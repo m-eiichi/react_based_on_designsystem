@@ -1,0 +1,5 @@
+.large_section {
+  padding: var(--size-f-04);
+  background-color: var(--white);
+  border-radius: 12px;
+}

@@ -1,0 +1,154 @@
+@import "../../../assets/styles/extend/padding_margin.css";
+
+.box {
+  @extend %padding_margin;
+}
+
+.width_full {
+  width: 100%;
+}
+
+.width_auto {
+  width: auto;
+}
+
+.height_full {
+  height: 100%;
+}
+
+.height_auto {
+  height: auto;
+}
+
+.transition {
+  transition: var(--transition-delay-default);
+}
+
+/* border-radius */
+.border_radius_xs {
+  border-radius: var(--radius-xs);
+}
+
+.border_radius_s {
+  border-radius: var(--radius-s);
+}
+
+.border_radius_m {
+  border-radius: var(--radius-m);
+}
+
+.border_radius_l {
+  border-radius: var(--radius-l);
+}
+
+.border_radius_xl {
+  border-radius: var(--radius-xl);
+}
+
+.border_radius_xxl {
+  border-radius: var(--radius-xxl);
+}
+
+.border_radius_none {
+  border-radius: 0;
+}
+
+.border {
+  border: solid var(--color-border-divider);
+}
+
+.shadow {
+  box-shadow: var(--elevation01);
+
+  &.hover_shadow:hover {
+    box-shadow: var(--elevation03);
+  }
+}
+
+.hover_shadow:hover {
+  box-shadow: var(--elevation01);
+}
+
+.bg_primary {
+  background-color: var(--color-bg-primary);
+}
+
+.bg_secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.bg_tertiary {
+  background-color: var(--color-bg-tertiary);
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+@media (--viewport-over-tablet) {
+  .box {
+    @extend %tb_padding_margin;
+  }
+
+  .tb_border_radius_xs {
+    border-radius: var(--radius-xs);
+  }
+
+  .tb_border_radius_s {
+    border-radius: var(--radius-s);
+  }
+
+  .tb_border_radius_m {
+    border-radius: var(--radius-m);
+  }
+
+  .tb_border_radius_l {
+    border-radius: var(--radius-l);
+  }
+
+  .tb_border_radius_xl {
+    border-radius: var(--radius-xl);
+  }
+
+  .tb_border_radius_xxl {
+    border-radius: var(--radius-xxl);
+  }
+
+  .tb_border_radius_none {
+    border-radius: 0;
+  }
+}
+
+@media (--viewport-over-desktop) {
+  .box {
+    @extend %pc_padding_margin;
+  }
+
+  .pc_border_radius_xs {
+    border-radius: var(--radius-xs);
+  }
+
+  .pc_border_radius_s {
+    border-radius: var(--radius-s);
+  }
+
+  .pc_border_radius_m {
+    border-radius: var(--radius-m);
+  }
+
+  .pc_border_radius_l {
+    border-radius: var(--radius-l);
+  }
+
+  .pc_border_radius_xl {
+    border-radius: var(--radius-xl);
+  }
+
+  .pc_border_radius_xxl {
+    border-radius: var(--radius-xxl);
+  }
+
+  .pc_border_radius_none {
+    border-radius: 0;
+  }
+}

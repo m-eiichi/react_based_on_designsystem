@@ -1,0 +1,59 @@
+@import "../../../assets/styles/extend/padding_margin.css";
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  @extend %padding_margin;
+}
+
+.width_xs {
+  width: 444px;
+}
+
+.width_s {
+  width: 575px;
+}
+
+.width_m {
+  width: 992px;
+}
+
+.width_l {
+  width: 1280px;
+}
+
+.width_xl {
+  width: 1920px;
+}
+
+.maxWidth_xs {
+  max-width: 444px;
+}
+
+.maxWidth_s {
+  max-width: 575px;
+}
+
+.maxWidth_m {
+  max-width: 992px;
+}
+
+.maxWidth_l {
+  max-width: 1280px;
+}
+
+.maxWidth_xl {
+  max-width: 1920px;
+}
+
+@media (--viewport-over-tablet) {
+  .container {
+    @extend %tb_padding_margin;
+  }
+}
+
+@media (--viewport-over-desktop) {
+  .container {
+    @extend %pc_padding_margin;
+  }
+}

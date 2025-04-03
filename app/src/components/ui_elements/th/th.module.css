@@ -1,0 +1,111 @@
+.th {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: scroll;
+  font-weight: var(--weight-bold);
+  line-height: var(--line-height-150);
+  text-align: center;
+  background-color: var(--color-bg-primary);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.size_xs {
+  min-height: 25px;
+  padding: 2px var(--size-f-01);
+  font-size: var(--font-size-14);
+}
+
+.size_s {
+  min-height: 36px;
+  padding: var(--base-size-4px) var(--size-f-01);
+  font-size: var(--font-size-16);
+}
+
+.size_m {
+  min-height: 44px;
+  padding: var(--size-f-01);
+  font-size: var(--font-size-16);
+}
+
+.size_l {
+  min-height: var(--base-size-80px);
+  padding: var(--size-f-01) var(--base-size-16px);
+  font-size: var(--font-size-16);
+}
+
+.color_primary {
+  background-color: var(--color-bg-tertiary);
+}
+
+.color_secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.color_tertiary {
+  background-color: var(--tertiary);
+}
+
+.alignItems_center {
+  align-items: center;
+}
+
+.alignItems_start {
+  align-items: flex-start;
+}
+
+.alignItems_end {
+  align-items: flex-end;
+}
+
+.border_all {
+  border: var(--color-border-divider) solid;
+}
+
+.border_none {
+  border: none;
+}
+
+.border_t {
+  border-top: var(--color-border-divider) solid;
+}
+
+.border_r {
+  border-right: var(--color-border-divider) solid;
+}
+
+.border_b {
+  border-bottom: var(--color-border-divider) solid;
+}
+
+.border_l {
+  border-left: var(--color-border-divider) solid;
+}
+
+.border_rb {
+  border-right: var(--color-border-divider) solid;
+  border-bottom: var(--color-border-divider) solid;
+}
+
+.border_trb {
+  border-top: var(--color-border-divider) solid;
+  border-right: var(--color-border-divider) solid;
+  border-bottom: var(--color-border-divider) solid;
+}
+
+.border_rbl {
+  border-right: var(--color-border-divider) solid;
+  border-bottom: var(--color-border-divider) solid;
+  border-left: var(--color-border-divider) solid;
+}
+
+.scroll {
+  .children {
+    flex: 0 0 auto;
+  }
+}

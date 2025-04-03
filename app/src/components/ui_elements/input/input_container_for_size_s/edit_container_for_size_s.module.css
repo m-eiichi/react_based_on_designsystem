@@ -1,0 +1,15 @@
+.container {
+  padding: var(--base-size-4px) 0;
+}
+
+.full_width {
+  width: 100%;
+}
+
+.display_inlineBlock {
+  display: inline-block;
+}
+
+.display_block {
+  display: block;
+}

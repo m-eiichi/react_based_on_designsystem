@@ -1,0 +1,15 @@
+.wrapper {
+  width: min(100%, 1280px);
+  margin: auto;
+}
+
+.inner {
+  padding: var(--size-f-05) var(--base-size-80px);
+  margin: 0 auto;
+}
+
+/* @media (--viewport-over-desktop) {
+  .inner {
+    padding: var(--size-f-05);
+  }
+} */
