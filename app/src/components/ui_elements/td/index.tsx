@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+import { clsx } from "clsx";
 import { TdProps } from "./types.ts";
 import Styles from "./td.module.css";
 
@@ -20,18 +21,17 @@ export const Td = ({
   contentOverflow = "wrap",
   children,
 }: TdProps): ReactElement => {
-  const className = [
+  const tdClass = clsx(
     Styles.td,
     Styles[`size_${size}`],
     Styles[`textAlign_${textAlign}`],
     Styles[`alignItems_${alignItems}`],
     Styles[`border_${border}`],
     contentOverflow === "scroll" && Styles.scroll,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  );
+
   return (
-    <As className={className} style={{ ...style }}>
+    <As className={tdClass} style={style}>
       <span className={Styles.children}>{children}</span>
     </As>
   );

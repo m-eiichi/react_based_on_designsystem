@@ -1,6 +1,6 @@
-FROM node:20.10.0-bullseye-slim
+FROM node:23.11.0-slim
 LABEL version="1.0"
-LABEL description="node20 with Yarn 4"
+LABEL description="react base on designsystem"
 # Update and install necessary packages
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
