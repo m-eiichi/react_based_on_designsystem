@@ -8,11 +8,15 @@
 }
 
 .label_text {
-  font: var(--label-l);
+  font-size: var(--font-size-14);
+  font-weight: var(--weight-normal);
+  line-height: var(--line-height-150);
 }
 
 .requirement {
-  font: var(--label-l);
+  font-size: var(--font-size-14);
+  font-weight: var(--weight-normal);
+  line-height: var(--line-height-150);
   color: var(--color-alert-text);
 }
 

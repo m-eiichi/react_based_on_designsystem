@@ -121,6 +121,7 @@ export const EditForSb = ({
         register={register(zod_rule, { disabled: disabled })}
         readonly={readonly}
         errors={errors[zod_rule]}
+        errorAreaFixed={errorAreaFixed}
       />
     </>
   );

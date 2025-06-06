@@ -1,7 +1,13 @@
 import { z } from "zod";
 
-const setReqMessage = (name = ""): string => {
+export const setReqMessage = (name = ""): string => {
   return !name ? "こちらの項目を入力して下さい。" : `${name}を入力して下さい。`;
+};
+
+export const setReqSelectedMessage = (name = ""): string => {
+  return !name
+    ? "こちらの項目をを選択して下さい。"
+    : `${name}を選択して下さい。`;
 };
 
 const nameMessage = (name: string | undefined): string =>
@@ -147,6 +153,24 @@ export const createNumberValidate = ({ name = "", min = 0, max = 0 }) => {
 };
 
 /**
+ * integer validation
+ * @param name 項目名
+ * @param min 最小値(0で制御なし) 初期値=0
+ * @returns validation
+ */
+
+export const validateIntegerEdit = ({ name = "", min = 0 }) => {
+  const zodobj = z.preprocess(
+    (val) => Number(val),
+    z
+      .number({ required_error: setReqMessage(name) })
+      .int({ message: `${name}は半角数字で入力して下さい。` })
+      .min(min, { message: `${name}は${min}以上の半角数字で入力して下さい。` }),
+  );
+  return zodobj;
+};
+
+/**
  * password validation
  * @param name 項目名
  * @param min_length 最小文字数(0で制御なし) 初期値=1
@@ -228,6 +252,23 @@ export const createSelectValidate = ({ name = "", min = 1 }) => {
 };
 
 /**
+ * integer validation
+ * @param name 項目名
+ * @param min 最小値(0で制御なし) 初期値=0
+ * @returns validation
+ */
+export const validateIntegerSelect = ({ name = "", min = 0 }) => {
+  let zodobj = z
+    .number({ required_error: setReqSelectedMessage(name) })
+    .int({ message: "正しい項目を選択して下さい。" });
+
+  if (typeof min === "number") {
+    zodobj = zodobj.min(min, { message: `${name}を正しく選択して下さい。` });
+  }
+
+  return zodobj;
+};
+/**
  * checkbox validate
  * @param name 項目名
  * @param min 最小選択数(0で制御なし) 初期値=1
@@ -260,7 +301,7 @@ export const createCheckBoxValidate = ({ name = "", min = 1, max = 0 }) => {
  * @returns validation
  */
 export const createDateTimeValidate = ({ name = "" }) => {
-  let zodobj = z
+  const zodobj = z
     .string({ required_error: setReqMessage(name) })
     .refine((val) => val !== "", setReqMessage(name));
 

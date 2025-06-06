@@ -7,6 +7,10 @@ import Styles from "./error_text.module.css";
  * @param {errorTextProps} prop stypes.ts参照
  * @returns {JSX.Element} コンポーネント
  */
-export const ErrorText = ({ children }: errorTextProps) => {
-  return <p className={Styles.text}>{children}</p>;
+export const ErrorText = ({ style, children }: errorTextProps) => {
+  return (
+    <p className={Styles.text} style={style}>
+      {children}
+    </p>
+  );
 };

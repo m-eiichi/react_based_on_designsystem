@@ -5,14 +5,15 @@
   padding: 0;
   overflow: unset;
   background: none;
+  outline: none;
 
   &::backdrop {
-    background: rgb(0 0 0 / 50%);
+    background-color: var(--opacity-grey-500);
     opacity: 1;
   }
 
   &.noOverlay::backdrop {
-    background: rgb(0 0 0 / 0%);
+    background-color: var(--opacity-grey-0);
   }
 
   /* Google Chrome、Safariへの対応 */

@@ -19,7 +19,6 @@ export const Default: Story = {
       { label: "選択肢2", value: 2 },
       { label: "選択肢3", value: 3 },
     ],
-    id: "select_element",
     placeholder: "プレイスホルダー",
     // defaultValueはRHF側で指定するのでここでは指定しない。
   },

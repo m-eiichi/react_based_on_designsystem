@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  background-color: var(--color-bg-secondary);
+  object-fit: cover;
+}
+
+.size_s {
+  width: var(--size-f-03);
+  height: var(--size-f-03);
+}
+
+.size_m {
+  width: var(--size-f-04);
+  height: var(--size-f-04);
+}
+
+.size_l {
+  width: var(--size-f-05);
+  height: var(--size-f-05);
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+img:not([src]),
+img[src=""] {
+  display: none;
+}

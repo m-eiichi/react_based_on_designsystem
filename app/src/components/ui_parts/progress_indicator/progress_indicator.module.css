@@ -2,7 +2,29 @@
   display: inline-flex;
   gap: var(--size-f-02);
   align-items: center;
+  padding: 24px;
   margin: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  &.hasBackground {
+    background-color: var(--opacity-grey-100);
+  }
+
+  .container {
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-m);
+    box-shadow: var(--elevation03);
+  }
 }
 
 /* spinner */
@@ -41,12 +63,6 @@
   }
 }
 
-.overlay {
-  padding: 24px 24px 16px;
-  background-color: var(--color-bg-primary);
-  border-radius: var(--radius-m);
-}
-
 .inline {
   & .spinner {
     width: 24px;
@@ -63,10 +79,6 @@
     &::before {
       width: 40px;
     }
-  }
-
-  &.overlay {
-    padding: 24px;
   }
 }
 

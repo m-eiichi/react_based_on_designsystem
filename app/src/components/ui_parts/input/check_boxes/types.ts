@@ -46,10 +46,4 @@ export type CheckBoxesProps<T extends FieldValues> = {
   register: UseFormRegisterReturn;
   readonly?: boolean;
   errors?: FieldError | Merge<FieldError, FieldErrorsImpl<T>>;
-  handleBlur?:
-    | React.FocusEventHandler<HTMLInputElement>[]
-    | React.FocusEventHandler<HTMLInputElement>;
-  handleChange?:
-    | React.ChangeEventHandler<HTMLInputElement>[]
-    | React.ChangeEventHandler<HTMLInputElement>;
 };

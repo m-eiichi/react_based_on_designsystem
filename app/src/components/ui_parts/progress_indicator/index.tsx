@@ -11,22 +11,39 @@ import Styles from "./progress_indicator.module.css";
  * @returns {ReactElement} コンポーネント
  */
 export const ProgressIndicator = ({
+  style,
   label,
   shape = "spinner",
   inline = false,
   overlay = false,
+  hasBackground = false,
 }: ProgressIndicatorProps): ReactElement => {
+  const wrap = [
+    overlay && Styles.overlay,
+    hasBackground && Styles.hasBackground,
+  ];
   const container = [
     Styles.container,
     inline === true ? Styles.inline : Styles.stacked,
-    overlay === true ? Styles.overlay : "",
   ];
   const loader = shape === "spinner" ? Styles.spinner : Styles.liner;
 
-  return (
+  const content = (
     <div className={container.join(" ")}>
       <div className={loader}></div>
-      <p className={Styles.label}>{label}</p>
+      {label && <p className={Styles.label}>{label}</p>}
     </div>
+  );
+
+  return (
+    <>
+      {overlay ? (
+        <div className={wrap.join(" ")} style={style}>
+          {content}
+        </div>
+      ) : (
+        content
+      )}
+    </>
   );
 };

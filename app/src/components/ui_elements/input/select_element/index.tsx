@@ -1,6 +1,11 @@
 import { type ReactElement } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import Select, { StylesConfig } from "react-select";
+import {
+  Controller,
+  useFormContext,
+  type ControllerRenderProps,
+  type FieldValues,
+} from "react-hook-form";
+import Select, { type StylesConfig } from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { InputContainerForSizeS } from "@/components/ui_elements/input/input_container_for_size_s";
 import { SelectElementProps, OptionProps } from "./types";
@@ -17,15 +22,15 @@ import { SelectElementProps, OptionProps } from "./types";
 export const SelectElement = ({
   name,
   options,
-  id,
   size = "l",
   width,
   widthFixed = true,
   placeholder,
-  defaultValue,
   disabled,
+  readonly,
   error,
-  handleChange,
+  externalOnChange,
+  externalOnBlur,
   creatable,
 }: SelectElementProps): ReactElement => {
   const { control } = useFormContext();
@@ -100,52 +105,69 @@ export const SelectElement = ({
     }
   };
 
-  const selectStyles: StylesConfig<OptionProps, false> = {
+  const selectStyles: StylesConfig<OptionProps | undefined | false> = {
+    // 選択ボックスの外枠のスタイル
     control: (baseStyles, state) => ({
       ...baseStyles,
-
       height: selectHeight(),
       lineHeight: 1,
       boxShadow: "none",
       outline: state.isFocused ? "2px solid #b78f00" : errorStyle(),
       outlineOffset: "-1px",
       borderRadius: selectBorderRadius(),
-      borderColor: "#1a1a1a",
-      "&:hover": {
-        borderColor: "#1a1a1a",
-      },
+      borderColor: state.isDisabled ? "#7f7f7f" : "#1a1a1a",
+      backgroundColor: state.isDisabled ? "#f2f2f2" : "#ffffff",
+      color: state.isDisabled ? "#000000" : "#A1A1A1",
+      cursor: state.isDisabled ? "not-allowed" : "pointer",
     }),
+    // コンテナ全体のスタイル
     container: (baseStyles) => ({
       ...baseStyles,
       display: "inline-block",
       maxWidth: selectMaxWidth(),
       width: selectWidth(),
     }),
+
+    // 選択された値の表示エリアのスタイル
     valueContainer: (baseStyles) => ({
       ...baseStyles,
       padding: valueContainerPadding(),
     }),
+
+    // 入力フィールドのスタイル
     input: (baseStyles) => ({
       ...baseStyles,
       padding: 0,
       margin: 0,
     }),
+
+    // ▼ボタンやクリアボタンのコンテナ
     indicatorsContainer: (baseStyles) => ({
       ...baseStyles,
       width: IndicatorsContainerWidth(),
     }),
+
+    //placeholderのスタイル
+    placeholder: (baseStyles) => ({
+      ...baseStyles,
+      maxWidth: "100%",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      color: "#666666",
+    }),
   };
 
-  // CreatableSelect と Select　の切り分け処理
-  const renderSelect = (field: any) => {
+  // CreatableSelect と Select の切り分け処理
+  const renderSelect = (field: ControllerRenderProps<FieldValues, string>) => {
     const Component = creatable ? CreatableSelect : Select;
     return (
       <Component
         {...field}
-        inputId={id ? id : name}
+        inputId={name}
         styles={selectStyles}
         options={options}
-        isDisabled={disabled}
+        isDisabled={disabled || readonly}
         value={
           field.value !== ""
             ? options?.find((option) => option.value === field.value) ?? {
@@ -154,17 +176,27 @@ export const SelectElement = ({
               }
             : null
         } // 選択された値を表示
-        onChange={(selected?: OptionProps) => {
-          field.onChange(selected ? selected.value : null); // nullチェックを追加
+        onChange={(selectedOptions, _actionMeta) => {
+          let value: string | number | (string | number)[] | null = null;
 
-          // カスタムのハンドラーを実行
-          if (handleChange) {
-            if (typeof handleChange === "function") {
-              handleChange();
-            } else {
-              handleChange.forEach((change_event) => change_event());
-            }
+          if (Array.isArray(selectedOptions)) {
+            // MultiValue（複数選択）の場合 → valueの配列を渡す
+            value = selectedOptions.map((option) => option.value);
+          } else if (
+            selectedOptions &&
+            typeof selectedOptions === "object" &&
+            "value" in selectedOptions
+          ) {
+            // SingleValue（単一選択）の場合 → valueを直接渡す
+            value = selectedOptions.value;
           }
+
+          field.onChange(value);
+          externalOnChange?.(value);
+        }}
+        onBlur={() => {
+          field.onBlur(); // フォーカスが外れたことをフォームに通知
+          externalOnBlur?.(field.value); // 現在のvalueを外部に通知
         }}
         placeholder={placeholder}
       />
@@ -178,7 +210,6 @@ export const SelectElement = ({
           <Controller
             name={name}
             control={control}
-            defaultValue={defaultValue ? defaultValue : ""}
             render={({ field }) => renderSelect(field)}
           />
         </InputContainerForSizeS>
@@ -186,7 +217,6 @@ export const SelectElement = ({
         <Controller
           name={name}
           control={control}
-          defaultValue={defaultValue ? defaultValue : ""}
           render={({ field }) => renderSelect(field)}
         />
       )}

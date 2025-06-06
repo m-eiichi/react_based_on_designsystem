@@ -1,13 +1,24 @@
-export const formatDate = (date: Date, format = "yyyy/MM/dd", not_blank = false): string => {
+export const formatDate = (
+  date: Date,
+  format = "yyyy/MM/dd",
+  not_blank = false,
+): string => {
   // 引数ない場合 = 1899/12/30の場合は空白
   if (!not_blank) {
-    if (date.getFullYear() === 1899 && date.getMonth() == 11 && date.getDate() == 30) {
+    if (
+      date.getFullYear() === 1899 &&
+      date.getMonth() == 11 &&
+      date.getDate() == 30
+    ) {
       return "";
     }
   }
   if (format.indexOf("GGGG") > -1) {
     // ** [明治元年]1868年09月08日～1868年1月1日
-    if (new Date("1868/9/8").getTime() <= date.getTime() && date.getTime() <= new Date("1968/12/31").getTime()) {
+    if (
+      new Date("1868/9/8").getTime() <= date.getTime() &&
+      date.getTime() <= new Date("1968/12/31").getTime()
+    ) {
       format = format.replace(/GGGG/, "明治元");
       // **[明治] 1868年09月08日～1912年07月29日
     } else if (date.getTime() <= new Date("1912/7/29").getTime()) {
@@ -54,10 +65,72 @@ export const formatDate = (date: Date, format = "yyyy/MM/dd", not_blank = false)
     const milliSeconds = ("00" + date.getMilliseconds()).slice(-3);
     const length = format.match(/S/g)?.length;
     if (length !== undefined) {
-      for (let i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+      for (let i = 0; i < length; i++)
+        format = format.replace(/S/, milliSeconds.substring(i, i + 1));
     }
   }
 
-  format = format.replace(/W/, ["日", "月", "火", "水", "木", "金", "土"][date.getDay()]);
+  format = format.replace(
+    /W/,
+    ["日", "月", "火", "水", "木", "金", "土"][date.getDay()],
+  );
   return format;
+};
+
+/**
+ * localStorage の機能検出
+ * https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+ * @return T:localStorage使用可
+ */
+export const com_storageAvailable = (
+  type: "localStorage" | "sessionStorage",
+): boolean => {
+  const storage = window[type];
+  try {
+    const x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      // everything except Firefox
+      (e.code === 22 ||
+        // Firefox
+        e.code === 1014 ||
+        // test name field too, because code might not be present
+        // everything except Firefox
+        e.name === "QuotaExceededError" ||
+        // Firefox
+        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage.length !== 0
+    );
+  }
+};
+
+/**
+ * localSessionStorage取得
+ * @param key
+ * @returns Value
+ */
+export const getSessionStorageValue = (key: string): string | null => {
+  if (com_storageAvailable("sessionStorage")) {
+    return window.sessionStorage.getItem(key);
+  }
+  return null;
+};
+
+/**
+ * localSessionStorage保存
+ * @param key
+ * @param value
+ * @returns true:success
+ */
+export const setSessionStorageValue = (key: string, value: string): boolean => {
+  if (com_storageAvailable("sessionStorage")) {
+    window.sessionStorage.setItem(key, value);
+    return true;
+  }
+  return false;
 };

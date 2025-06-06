@@ -1,7 +1,7 @@
 import { useEffect, type ReactElement } from "react";
 
 import { TextArea } from "../..";
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createTextValidate } from "@/utils/validation";
 
 import { useForm } from "react-hook-form";
@@ -32,7 +32,7 @@ export const TextareaForSb = ({
   errorAreaFixed,
 }: TextAreaForSbProps): ReactElement => {
   const elm_name = "textarea";
-  const z_obj: any = z.object({
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [elm_name]: createTextValidate({ name: "", min_length, max_length }),
   });
 

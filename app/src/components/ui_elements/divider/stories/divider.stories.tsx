@@ -11,6 +11,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary_L: Story = {
+export const Sample_Divider: Story = {
   args: {},
 };

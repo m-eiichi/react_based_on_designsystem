@@ -29,7 +29,7 @@ const generateContainerResponsiveClass = (
 /**
  * <Container/>コンポーネント
  *
- * @description　コンテナコンポーネント
+ * @description コンテナコンポーネント
  * @param {ContainerProps} types.ts参照
  * @returns {ReactElement | null} コンポーネント
  */

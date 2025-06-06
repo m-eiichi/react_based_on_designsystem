@@ -1,6 +1,6 @@
 import { useEffect, type ReactElement } from "react";
 
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createCheckBoxValidate } from "@/utils/validation";
 
 import { useForm } from "react-hook-form";
@@ -34,7 +34,7 @@ export const CheckBoxesForSb = ({
   errorAreaFixed,
 }: CheckBoxesForSbProps): ReactElement => {
   const zod_rule = "test";
-  const z_obj: any = z.object({
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [zod_rule]: createCheckBoxValidate({ name, min, max }),
   });
 

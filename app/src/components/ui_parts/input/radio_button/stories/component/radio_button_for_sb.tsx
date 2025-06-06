@@ -1,7 +1,7 @@
 import { useEffect, type ReactElement } from "react";
 
 import { RadioButton } from "../..";
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createAnyValidate } from "@/utils/validation";
 
 import { useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ export const RadioButtonIconForSb = ({
   value,
 }: RadioButtonForSbProps): ReactElement => {
   const elm_name = "radiobutton";
-  const z_obj: any = z.object({
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [elm_name]: createAnyValidate(),
   });
 

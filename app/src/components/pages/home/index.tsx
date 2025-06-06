@@ -150,7 +150,7 @@ export const Home = (): ReactElement => {
             <FlexContainer alignItems="center">
               <EditElement
                 // id="c"
-                register={register("c",{onChange: (e) => console.log("onChange", e)})}
+                register={register("c")}
                 // readonly
                 // type="text"
                 width="500px"

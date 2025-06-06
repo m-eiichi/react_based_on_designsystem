@@ -9,8 +9,8 @@ import { Table } from "@tanstack/react-table";
  * @property fixedColumn 列の固定（左から何列までを固定するかを指定）
  * @property tableHeight tableの高さの指定
  */
-export type TableRTProps = {
-  tableInstance: Table<any>;
+export type TableRTProps<T> = {
+  tableInstance: Table<T>;
   size?: "s" | "m" | "l";
   theadFixed?: boolean;
   fixedColumn?: number;

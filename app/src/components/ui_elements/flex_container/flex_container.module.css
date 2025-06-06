@@ -32,9 +32,6 @@
 }
 
 /* align-content */
-.align_content_normal {
-  align-content: normal;
-}
 
 .align_content_center {
   align-content: center;
@@ -61,10 +58,6 @@
 }
 
 /* justify-content */
-.justify_content_normal {
-  justify-content: normal;
-}
-
 .justify_content_center {
   justify-content: center;
 }
@@ -90,10 +83,6 @@
 }
 
 /* align-items */
-.align_items_normal {
-  align-items: normal;
-}
-
 .align_items_center {
   align-items: center;
 }
@@ -139,6 +128,10 @@
   container-type: normal;
 }
 
+.containerType_size {
+  container-type: size;
+}
+
 .containerType_inline_size {
   container-type: inline-size;
 }
@@ -175,9 +168,6 @@
   }
 
   /* align-content */
-  .tb_align_content_normal {
-    align-content: normal;
-  }
 
   .tb_align_content_center {
     align-content: center;
@@ -204,10 +194,6 @@
   }
 
   /* justify-content */
-  .tb_justify_content_normal {
-    justify-content: normal;
-  }
-
   .tb_justify_content_center {
     justify-content: center;
   }
@@ -233,10 +219,6 @@
   }
 
   /* align-items */
-  .tb_align_items_normal {
-    align-items: normal;
-  }
-
   .tb_align_items_center {
     align-items: center;
   }
@@ -311,10 +293,6 @@
   }
 
   /* align-content */
-  .pc_align_content_normal {
-    align-content: normal;
-  }
-
   .pc_align_content_center {
     align-content: center;
   }
@@ -340,10 +318,6 @@
   }
 
   /* justify-content */
-  .pc_justify_content_normal {
-    justify-content: normal;
-  }
-
   .pc_justify_content_center {
     justify-content: center;
   }
@@ -369,10 +343,6 @@
   }
 
   /* align-items */
-  .pc_align_items_normal {
-    align-items: normal;
-  }
-
   .pc_align_items_center {
     align-items: center;
   }

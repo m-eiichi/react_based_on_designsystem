@@ -148,6 +148,7 @@
   --opacity-grey-200: rgb(0 0 0 / 20%);
   --opacity-grey-100: rgb(0 0 0 / 10%);
   --opacity-grey-50: rgb(0 0 0 / 5%);
+  --opacity-grey-0: rgb(0 0 0 / 0%);
 
   /* blue */
   --blue-1200: #000060;

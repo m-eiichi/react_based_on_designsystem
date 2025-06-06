@@ -95,7 +95,7 @@ export const DefaultDialogContent = ({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, dragStart]);
+  }, [isDragging, dragStart, position]);
 
   return (
     <div

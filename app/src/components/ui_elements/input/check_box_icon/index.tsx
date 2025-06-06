@@ -11,6 +11,7 @@ import Styles from "./check_box_icon.module.css";
  * @returns {ReactElement} コンポーネント
  */
 export const CheckBoxIcon = ({
+  style,
   id,
   value,
   checked,
@@ -18,8 +19,6 @@ export const CheckBoxIcon = ({
   readonly,
   register,
   error,
-  handleBlur,
-  handleChange,
 }: CheckBoxIconProps): ReactElement => {
   const icon = [
     Styles.icon,
@@ -39,34 +38,8 @@ export const CheckBoxIcon = ({
         defaultChecked={checked}
         disabled={register.disabled || disabled}
         {...register}
-        onBlur={(e) => {
-          // register
-          register?.onBlur(e);
-
-          // props分
-          if (handleBlur) {
-            if (typeof handleBlur === "function") {
-              handleBlur(e);
-            } else {
-              handleBlur.forEach((blur_event) => blur_event(e));
-            }
-          }
-        }}
-        onChange={(e) => {
-          // register
-          register?.onChange(e);
-
-          // props分
-          if (handleChange) {
-            if (typeof handleChange === "function") {
-              handleChange(e);
-            } else {
-              handleChange.forEach((change_event) => change_event(e));
-            }
-          }
-        }}
       />
-      <label className={icon} htmlFor={id}></label>
+      <label className={icon} style={style} htmlFor={id}></label>
     </>
   );
 };

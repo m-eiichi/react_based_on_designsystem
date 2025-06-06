@@ -46,9 +46,9 @@ export const FlexContainer = ({
   //基本
   direction = "row",
   wrap = "nowrap",
-  alignContent = "normal",
-  justifyContent = "normal",
-  alignItems = "normal",
+  alignContent = "stretch",
+  justifyContent = "start",
+  alignItems = "stretch",
   m,
   mx,
   my,
@@ -114,7 +114,7 @@ export const FlexContainer = ({
     Styles.flex,
     containerType === "inline-size"
       ? Styles.containerType_inline_size
-      : Styles.containerType_normal,
+      : containerType && Styles[`containerType_${containerType}`],
 
     generateFlexContainerResponsiveClass({
       direction,

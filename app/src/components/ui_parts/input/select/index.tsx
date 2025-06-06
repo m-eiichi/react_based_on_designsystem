@@ -15,19 +15,14 @@ import { SelectProps } from "./types";
  */
 export const Select = <T extends FieldValues>({
   size,
-  id,
-  disabled,
-  options,
   name,
-  placeholder,
-  defaultValue,
-  creatable,
+  disabled,
+  readonly,
   label,
   supportText,
   requirement,
   errors,
   errorAreaFixed,
-  handleChange,
   ...rest
 }: SelectProps<T>): ReactElement => {
   return (
@@ -40,19 +35,15 @@ export const Select = <T extends FieldValues>({
         text={label}
         requirement={requirement}
         supportText={supportText}
-        disabled={disabled}
+        disabled={disabled || readonly}
+        labelFor={name}
       />
       <SelectElement
         name={name}
         size={size}
-        id={id}
         error={errors ? true : false}
-        options={options}
-        defaultValue={defaultValue}
-        creatable={creatable}
         disabled={disabled}
-        handleChange={handleChange}
-        placeholder={placeholder}
+        readonly={readonly}
         {...rest}
       />
       {errorAreaFixed === true ? (

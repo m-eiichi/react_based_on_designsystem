@@ -90,7 +90,7 @@ export type FlexContainerProps = SpacingProps &
   BaseSizeProps<"tbGap"> &
   BaseSizeProps<"pcGap"> & {
     style?: React.CSSProperties;
-    containerType?: "normal" | "inline-size";
+    containerType?: "normal" | "inline-size" | "size";
     children?: React.ReactNode;
     direction?: "row" | "column" | "rReverse" | "cReverse";
     wrap?: "nowrap" | "wrap";
@@ -100,17 +100,16 @@ export type FlexContainerProps = SpacingProps &
       | "end"
       | "around"
       | "between"
-      | "stretch"
-      | "normal";
+      | "stretch";
     justifyContent?:
       | "center"
       | "start"
       | "end"
       | "between"
       | "around"
-      | "evenly"
-      | "normal";
-    alignItems?: "center" | "start" | "end" | "stretch" | "baseline" | "normal";
+      | "evenly";
+    alignItems?: "center" | "start" | "end" | "stretch" | "baseline";
+
     tbDirection?: "row" | "column" | "rReverse" | "cReverse";
     tbWrap?: "nowrap" | "wrap";
     tbAlignContent?:
@@ -119,23 +118,16 @@ export type FlexContainerProps = SpacingProps &
       | "end"
       | "around"
       | "between"
-      | "stretch"
-      | "normal";
+      | "stretch";
     tbJustifyContent?:
       | "center"
       | "start"
       | "end"
       | "between"
       | "around"
-      | "evenly"
-      | "normal";
-    tbAlignItems?:
-      | "center"
-      | "start"
-      | "end"
-      | "stretch"
-      | "baseline"
-      | "normal";
+      | "evenly";
+    tbAlignItems?: "center" | "start" | "end" | "stretch" | "baseline";
+
     pcDirection?: "row" | "column" | "rReverse" | "cReverse";
     pcWrap?: "nowrap" | "wrap";
     pcAlignContent?:
@@ -144,23 +136,15 @@ export type FlexContainerProps = SpacingProps &
       | "end"
       | "around"
       | "between"
-      | "stretch"
-      | "normal";
+      | "stretch";
     pcJustifyContent?:
       | "center"
       | "start"
       | "end"
       | "between"
       | "around"
-      | "evenly"
-      | "normal";
-    pcAlignItems?:
-      | "center"
-      | "start"
-      | "end"
-      | "stretch"
-      | "baseline"
-      | "normal";
+      | "evenly";
+    pcAlignItems?: "center" | "start" | "end" | "stretch" | "baseline";
   };
 
 export type FlexContainerResponsiveProps = SpacingProps &
@@ -173,15 +157,13 @@ export type FlexContainerResponsiveProps = SpacingProps &
       | "end"
       | "around"
       | "between"
-      | "stretch"
-      | "normal";
+      | "stretch";
     justifyContent?:
       | "center"
       | "start"
       | "end"
       | "between"
       | "around"
-      | "evenly"
-      | "normal";
-    alignItems?: "center" | "start" | "end" | "stretch" | "baseline" | "normal";
+      | "evenly";
+    alignItems?: "center" | "start" | "end" | "stretch" | "baseline";
   };

@@ -32,7 +32,7 @@ export const Button = ({
       {size == "s" || size == "xs" ? (
         <div className={Styles.button__wrap}>
           <button
-            style={{ ...style }}
+            style={style}
             className={className.join(" ")}
             onClick={onClick}
             disabled={disabled}
@@ -43,7 +43,7 @@ export const Button = ({
         </div>
       ) : (
         <button
-          style={{ ...style }}
+          style={style}
           className={className.join(" ")}
           onClick={onClick}
           disabled={disabled}

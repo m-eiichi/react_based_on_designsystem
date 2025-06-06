@@ -8,6 +8,22 @@ const meta = {
   component: Box,
   tags: ["autodocs"],
   argTypes: {
+    // playwrightでテスト時、urlパラメータでobjectを渡すことができずテストができない
+    // → 対策としてstorybook側で選択できるoptionを作成する
+    // style: {
+    //   options: ["width300", "width500"],
+    //   control: {
+    //     labels: {
+    //       // ここでラベルを指定する
+    //       width300: 'width: "300px"',
+    //       width500: 'width: "500px"',
+    //     },
+    //   },
+    //   mapping: {
+    //     width300: { width: "300px" },
+    //     width500: { width: "500px" },
+    //   },
+    // },
     borderRadius: {
       control: "select",
       options: ["xs", "s", "m", "l", "xl", "xxl", undefined],

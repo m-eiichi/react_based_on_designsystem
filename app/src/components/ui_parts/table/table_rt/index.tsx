@@ -11,13 +11,13 @@ import Styles from "../table.module.css";
  * @param {TableRTProps} types.ts参照
  * @returns {ReactElement} コンポーネント
  */
-export const TableRT = ({
+export const TableRT = <T,>({
   tableInstance,
   size,
   theadFixed = true,
   fixedColumn,
   tableHeight,
-}: TableRTProps): ReactElement => {
+}: TableRTProps<T>): ReactElement => {
   const table = [
     Styles.table,
     size !== undefined ? Styles[`${size}`] : Styles.m,

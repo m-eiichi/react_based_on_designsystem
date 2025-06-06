@@ -1,10 +1,11 @@
 /**
  * <LabelWithSupportText/>プロパティ
  *
- * @property　ラベルのテキスト
- * @property　※（必須）の表示を制御
- * @property　サポートテキスト
- * @property　disabledを制御（ラベルの色のみ）
+ * @property text - ラベルのテキスト
+ * @property requirement - ※（必須）の表示を制御
+ * @property supportText - サポートテキスト
+ * @property disabled - disabledを制御（ラベルの色のみ）
+ * @property labelFor - labelのfor属性
  */
 
 export type LabelForInputProps = {
@@ -12,4 +13,5 @@ export type LabelForInputProps = {
   requirement?: boolean;
   supportText?: string;
   disabled?: boolean;
+  labelFor?: string;
 };

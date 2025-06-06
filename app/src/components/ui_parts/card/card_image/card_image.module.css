@@ -1,0 +1,13 @@
+.img {
+  width: 100%;
+}
+
+.square {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.rectangle {
+  aspect-ratio: calc(3 / 2);
+  object-fit: cover;
+}

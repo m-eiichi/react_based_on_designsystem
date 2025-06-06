@@ -1,5 +1,4 @@
 import { type ReactElement } from "react";
-import { clsx } from "clsx";
 
 import { LabelProps } from "./types";
 import Styles from "./label.module.css";
@@ -19,11 +18,13 @@ export const Label = ({
   disabled,
   textAlign = "left",
 }: LabelProps): ReactElement => {
-  const labelClass = clsx(
+  const labelClass = [
     Styles.label,
-    disabled && Styles.disabled,
+    disabled === true && Styles.disabled,
     Styles[`textAlign_${textAlign}`],
-  );
+  ]
+    .filter(Boolean)
+    .join(" ");
   return (
     <>
       {(text !== undefined || (!disabled && requirement)) && (

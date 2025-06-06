@@ -21,7 +21,6 @@ export const Edit = <T extends FieldValues>({
   id,
   errorAreaFixed,
   register,
-  multiple,
   readonly,
   errors,
   ...rest
@@ -37,6 +36,7 @@ export const Edit = <T extends FieldValues>({
         requirement={requirement}
         supportText={supportText}
         disabled={register.disabled || readonly}
+        labelFor={id}
       />
       <EditElement
         size={size}

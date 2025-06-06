@@ -1,5 +1,3 @@
-// TODO defaultvalueへの対応
-
 import { ReactElement } from "react";
 import { FieldValues } from "react-hook-form";
 import { FlexContainer } from "@/components/ui_elements/flex_container";
@@ -31,8 +29,6 @@ export const RadioButtons = <T extends FieldValues>({
   readonly,
   errors,
   errorAreaFixed,
-  handleBlur,
-  handleChange,
 }: RadioButtonsProps<T>): ReactElement => {
   return (
     <FlexContainer
@@ -72,41 +68,6 @@ export const RadioButtons = <T extends FieldValues>({
                 register={register}
                 width={width || item.width}
                 minWidth={minWidth || item.minWidth}
-                //TODO handleBlur handleChange 共通化
-                handleBlur={(e) => {
-                  if (handleBlur) {
-                    if (typeof handleBlur === "function") {
-                      handleBlur(e);
-                    } else {
-                      handleBlur.forEach((blur_event) => blur_event(e));
-                    }
-                  }
-                  if (item.handleBlur) {
-                    if (typeof item.handleBlur === "function") {
-                      item.handleBlur(e);
-                    } else {
-                      item.handleBlur.forEach((blur_event) => blur_event(e));
-                    }
-                  }
-                }}
-                handleChange={(e) => {
-                  if (handleChange) {
-                    if (typeof handleChange === "function") {
-                      handleChange(e);
-                    } else {
-                      handleChange.forEach((change_event) => change_event(e));
-                    }
-                  }
-                  if (item.handleChange) {
-                    if (typeof item.handleChange === "function") {
-                      item.handleChange(e);
-                    } else {
-                      item.handleChange.forEach((change_event) =>
-                        change_event(e),
-                      );
-                    }
-                  }
-                }}
               />
             );
           })}

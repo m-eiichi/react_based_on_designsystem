@@ -46,10 +46,4 @@ export type RadioButtonsProps<T extends FieldValues> = {
   items?: RadioButtonItemProps[];
   register: UseFormRegisterReturn;
   errors?: FieldError | Merge<FieldError, FieldErrorsImpl<T>>;
-  handleBlur?:
-    | React.FocusEventHandler<HTMLInputElement>[]
-    | React.FocusEventHandler<HTMLInputElement>;
-  handleChange?:
-    | React.ChangeEventHandler<HTMLInputElement>[]
-    | React.ChangeEventHandler<HTMLInputElement>;
 };

@@ -20,12 +20,20 @@ export const DialogHeader = ({
   return (
     <div className={Styles.dialog_header} ref={dialogHeaderRef}>
       <div className={Styles.dialog_header_title_container}>
-        <Typography size="h5" weight="normal">
+        <Typography
+          size="h5"
+          weight="normal"
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           {title}
         </Typography>
       </div>
 
-      <Divider vMarginType="none" />
+      <Divider my="none" />
     </div>
   );
 };

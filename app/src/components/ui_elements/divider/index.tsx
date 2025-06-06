@@ -12,19 +12,23 @@ import Styles from "./divider.module.css";
  */
 
 export const Divider = ({
-  type = "fit",
-  vMarginType = "contents",
-  color = "text",
-  weight = "s",
+  style,
+  color = "dark",
+  lineWeight = "s",
+  mx,
+  my,
   borderStyle = "solid",
 }: DividerProps): ReactElement => {
   const className = [
     Styles.divider,
-    Styles[type],
-    Styles[vMarginType],
     Styles[color],
-    Styles[weight],
+    Styles[`lineWeight_${lineWeight}`],
+    mx && Styles.hasHorizontalMargin,
+    my && Styles[`vertical_${my}`],
     Styles[borderStyle],
-  ];
-  return <hr className={className.join(" ")} />;
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return <hr className={className} style={style} />;
 };

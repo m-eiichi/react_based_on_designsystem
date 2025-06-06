@@ -13,8 +13,8 @@ import Styles from "./textarea_element.module.css";
  * @returns {ReactElement} コンポーネント
  */
 export const TextAreaElement = <T extends FieldValues>({
+  style,
   size = "l",
-  width,
   register,
   id,
   rows,
@@ -23,15 +23,7 @@ export const TextAreaElement = <T extends FieldValues>({
   errors,
   placeholder,
   fixed = true,
-  defaultValue,
-  handleBlur,
-  handleChange,
 }: TextAreaElementProps<T>): ReactElement => {
-  // テキストエリアの幅設定
-  const textareaWidth = {
-    maxWidth: width || "none",
-  };
-
   // クラス名の生成
   const textareaClasses = [
     Styles.textarea,
@@ -46,34 +38,12 @@ export const TextAreaElement = <T extends FieldValues>({
   // プレースホルダー設定
   const textareaPlaceholder = register.disabled ? "" : placeholder;
 
-  // `onBlur` イベントハンドラ
-  const handleBlurEvent = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    register?.onBlur(e);
-
-    if (handleBlur) {
-      Array.isArray(handleBlur)
-        ? handleBlur.forEach((blurEvent) => blurEvent(e))
-        : handleBlur(e);
-    }
-  };
-
-  // `onChange` イベントハンドラ
-  const handleChangeEvent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    register?.onChange(e);
-
-    if (handleChange) {
-      Array.isArray(handleChange)
-        ? handleChange.forEach((changeEvent) => changeEvent(e))
-        : handleChange(e);
-    }
-  };
-
   return (
     <>
       {size === "s" ? (
         <InputContainerForSizeS width="full">
           <textarea
-            style={textareaWidth}
+            style={style}
             className={textareaClasses}
             id={id}
             rows={rows}
@@ -81,15 +51,12 @@ export const TextAreaElement = <T extends FieldValues>({
             placeholder={textareaPlaceholder}
             readOnly={readonly}
             disabled={register.disabled}
-            defaultValue={defaultValue}
             {...register}
-            onBlur={handleBlurEvent}
-            onChange={handleChangeEvent}
           />
         </InputContainerForSizeS>
       ) : (
         <textarea
-          style={textareaWidth}
+          style={style}
           className={textareaClasses}
           id={id}
           rows={rows}
@@ -97,10 +64,7 @@ export const TextAreaElement = <T extends FieldValues>({
           placeholder={textareaPlaceholder}
           readOnly={readonly}
           disabled={register.disabled}
-          defaultValue={defaultValue}
           {...register}
-          onBlur={handleBlurEvent}
-          onChange={handleChangeEvent}
         />
       )}
     </>

@@ -1,7 +1,7 @@
 import { useEffect, type ReactElement } from "react";
 
 import { EditElement } from "../..";
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createAnyValidate } from "@/utils/validation";
 
 import { useForm, type FieldValues } from "react-hook-form";
@@ -25,7 +25,8 @@ export const EditElementForSb = <T extends FieldValues>({
   readonly,
 }: EditElementForSbProps<T>): ReactElement => {
   const elm_name = "edit_elm";
-  const z_obj: any = z.object({
+
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [elm_name]: createAnyValidate(),
   });
 
@@ -46,6 +47,8 @@ export const EditElementForSb = <T extends FieldValues>({
       id={id}
       size={size}
       width={width}
+      type="number"
+      numberSpin
       widthFixed={widthFixed}
       register={register(elm_name, { disabled: disabled })}
       errors={errors ? errors : undefined}

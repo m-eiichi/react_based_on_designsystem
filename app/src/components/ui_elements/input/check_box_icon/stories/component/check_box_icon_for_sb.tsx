@@ -1,7 +1,7 @@
 import { useEffect, type ReactElement } from "react";
 
 import { CheckBoxIcon } from "../..";
-import { z } from "zod";
+import { z, ZodTypeAny, ZodObject } from "zod";
 import { createAnyValidate } from "@/utils/validation";
 
 import { useForm } from "react-hook-form";
@@ -24,7 +24,7 @@ export const CheckBoxIconForSb = ({
 }: CheckBoxIconForSbProps): ReactElement => {
   const elm_name = "checkbox_icon";
 
-  const z_obj: any = z.object({
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [elm_name]: createAnyValidate(),
   });
 

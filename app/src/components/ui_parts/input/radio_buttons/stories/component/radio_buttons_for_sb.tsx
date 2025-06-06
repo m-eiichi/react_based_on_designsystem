@@ -1,6 +1,6 @@
 import { useEffect, type ReactElement } from "react";
 
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createRadioValidate } from "@/utils/validation";
 
 import { useForm } from "react-hook-form";
@@ -31,7 +31,9 @@ export const RadioButtonsForSb = ({
   readonly,
 }: RadioButtonsRhfForSbProps): ReactElement => {
   const zod_rule = "test";
-  const z_obj: any = z.object({ [zod_rule]: createRadioValidate({ name }) });
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
+    [zod_rule]: createRadioValidate({ name }),
+  });
 
   type Schema = z.infer<typeof z_obj>;
 

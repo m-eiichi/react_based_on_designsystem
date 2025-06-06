@@ -1,5 +1,5 @@
 import { useEffect, type ReactElement } from "react";
-import { z } from "zod";
+import { z, ZodObject, ZodTypeAny } from "zod";
 import { createSelectValidate } from "@/utils/validation";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +14,6 @@ import { SelectForSbProps } from "./types";
  */
 export const SelectForSb = ({
   name,
-  id = "",
   size,
   width,
   label,
@@ -26,7 +25,7 @@ export const SelectForSb = ({
   disabled,
 }: SelectForSbProps): ReactElement => {
   const elm_name = "select";
-  const z_obj: any = z.object({
+  const z_obj: ZodObject<{ [key: string]: ZodTypeAny }> = z.object({
     [elm_name]: createSelectValidate({}),
   });
 
@@ -52,7 +51,6 @@ export const SelectForSb = ({
       <Select
         name={name}
         label={label}
-        id={id}
         requirement={requirement}
         supportText={supportText}
         placeholder={placeholder}

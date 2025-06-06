@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 import { type FieldValues } from "react-hook-form";
 import { InputContainerForSizeS } from "@/components/ui_elements/input/input_container_for_size_s";
 
-import { EditElementProps } from "./types";
+import { EditElementProps, InputType } from "./types";
 import Styles from "./edit_element.module.css";
 
 /**
@@ -12,28 +12,21 @@ import Styles from "./edit_element.module.css";
  * @param {EditElementProps} props types.ts参照
  * @returns {ReactElement} コンポーネント
  */
-export const EditElement = <T extends FieldValues>({
+export const EditElement = <T extends FieldValues, U extends InputType>({
   id,
   type,
   size,
   width,
-  widthFixed = true,
+  widthFixed = false,
   multiple,
   readonly,
-  defaultValue,
   placeholder,
   numberSpin,
-  handleBlur,
-  handleChange,
   register,
   errors,
-}: EditElementProps<T>): ReactElement => {
+}: EditElementProps<T, U>): ReactElement => {
   const editWidth = () => {
-    if (widthFixed && width) {
-      return { width: width };
-    } else if (!widthFixed && width) {
-      return { maxWidth: width };
-    }
+    return width ? (widthFixed ? { width } : { maxWidth: width }) : {};
   };
 
   const inputClasses = [
@@ -64,28 +57,7 @@ export const EditElement = <T extends FieldValues>({
       multiple={multiple}
       placeholder={placeHolder}
       readOnly={readonly}
-      defaultValue={defaultValue}
       {...register}
-      onBlur={(e) => {
-        register?.onBlur(e);
-        if (handleBlur) {
-          if (typeof handleBlur === "function") {
-            handleBlur(e);
-          } else {
-            handleBlur.forEach((blurEvent) => blurEvent(e));
-          }
-        }
-      }}
-      onChange={(e) => {
-        register?.onChange(e);
-        if (handleChange) {
-          if (typeof handleChange === "function") {
-            handleChange(e);
-          } else {
-            handleChange.forEach((changeEvent) => changeEvent(e));
-          }
-        }
-      }}
     />
   );
 

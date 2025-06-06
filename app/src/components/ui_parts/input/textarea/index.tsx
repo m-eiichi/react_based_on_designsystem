@@ -36,6 +36,7 @@ export const TextArea = <T extends FieldValues>({
         requirement={requirement}
         supportText={supportText}
         disabled={register.disabled || readonly}
+        labelFor={id}
       />
       <TextAreaElement
         size={size}

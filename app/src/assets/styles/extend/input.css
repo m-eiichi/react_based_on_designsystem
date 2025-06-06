@@ -54,7 +54,9 @@
   }
 
   &.disabled {
+    color: var(--color-disabled-text);
     background-color: var(--color-bg-tertiary);
     border: solid var(--color-border-disabled);
+    outline: none;
   }
 }

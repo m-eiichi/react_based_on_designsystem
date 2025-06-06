@@ -17,6 +17,7 @@ export const LabelForInput = ({
   requirement,
   supportText,
   disabled,
+  labelFor,
 }: LabelForInputProps): ReactElement => {
   return (
     <>
@@ -24,12 +25,22 @@ export const LabelForInput = ({
         supportText ? (
           // labelかrequirementが存在して、かつsupportTextが存在する場合
           <FlexContainer direction="column" alignItems="start" gap="xs">
-            <Label text={text} requirement={requirement} disabled={disabled} />
+            <Label
+              text={text}
+              requirement={requirement}
+              disabled={disabled}
+              labelFor={labelFor}
+            />
             <SupportText disabled={disabled}>{supportText}</SupportText>
           </FlexContainer>
         ) : (
           // labelかrequirementが存在して、かつsupportTextが存在しない場合
-          <Label text={text} requirement={requirement} disabled={disabled} />
+          <Label
+            text={text}
+            requirement={requirement}
+            disabled={disabled}
+            labelFor={labelFor}
+          />
         )
       ) : (
         // supportTextのみ存在する場合
@@ -40,6 +51,3 @@ export const LabelForInput = ({
     </>
   );
 };
-
-{
-}
