@@ -6,12 +6,18 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "prettier",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh"],
   rules: {
+    // JS用の重複ルールを無効化
+    "no-unused-vars": "off",
+
+    // TS用ルールにargsIgnorePatternを指定
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+
     "react-refresh/only-export-components": [
       "warn",
 
