@@ -3,22 +3,24 @@ import { UseFormRegisterReturn } from "react-hook-form";
 /**
  * <CheckBoxIcon/>プロパティ
  *
- * @property style - 直書き用
- * @property id - id属性
- * @property value - value属性
- * @property checked - True=チェックON
- * @property disabled - True=disabled
- * @property readonly - True=Readonly
- * @property register - react-hook-form.register
- * @property error - True=エラーあり
+ * @property style - インラインスタイルの指定
+ * @property register - react-hook-form の register() から得られるオブジェクト。
+ *                      onChange / onBlur / disabled などのイベント・状態も含まれており、
+ *                      これらは register 経由で一括管理することを推奨。
+ *                      コンポーネント内部で個別に onChange や onBlur、disabled を扱うのではなく、
+ *                      register をスプレッドすることで一貫したフォーム状態の管理を実現する。
+ * @property id - input 要素の id 属性
+ * @property value - input 要素の value 属性
+ * @property readonly - 読み取り専用（UI 制御用）
+ * @property error - バリデーションエラー時に true を設定
  */
+
 export type CheckBoxIconProps = {
   style?: React.CSSProperties;
+  register: UseFormRegisterReturn;
   id?: string;
   value?: string | number;
-  checked?: boolean;
   disabled?: boolean;
   readonly?: boolean;
-  register: UseFormRegisterReturn;
   error?: boolean;
 };
