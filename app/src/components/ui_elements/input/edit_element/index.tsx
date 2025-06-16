@@ -1,34 +1,40 @@
 import { type ReactElement } from "react";
-import { type FieldValues } from "react-hook-form";
 import { InputContainerForSizeS } from "@/components/ui_elements/input/input_container_for_size_s";
 
-import { EditElementProps, InputType } from "./types";
+import { EditElementProps } from "./types";
 import Styles from "./edit_element.module.css";
 
 /**
  * <EditElement/>コンポーネント
  *
- * @description <input/>要素の最小コンポーネント
+ * @description edit要素の最小コンポーネント
+ *
  * @param {EditElementProps} props types.ts参照
+ *
  * @returns {ReactElement} コンポーネント
+ *
+ * @remarks
+ * バリデーションは zod + react-hook-form の resolver によって行うため、
+ * このコンポーネント内では `onBlur` や `onChange` によるバリデーション処理は不要です。
+ * また、`disabled` 状態も含め、フォームの状態管理は react-hook-form に任せる方針としています。
+ *
+ * そのため、`onChange` / `onBlur` / `disabled` などの属性はこのコンポーネントでは個別に扱わず、
+ * 呼び出し元で `register()` の返り値をスプレッドする形で渡すことを想定しています。
  */
-export const EditElement = <T extends FieldValues, U extends InputType>({
-  id,
-  type,
-  size,
-  width,
-  widthFixed = false,
-  multiple,
-  readonly,
-  placeholder,
-  numberSpin,
-  register,
-  errors,
-}: EditElementProps<T, U>): ReactElement => {
-  const editWidth = () => {
-    return width ? (widthFixed ? { width } : { maxWidth: width }) : {};
-  };
 
+export const EditElement = ({
+  style,
+  register,
+  id,
+  size = "l",
+  fullWidth = false,
+  placeholder,
+  readonly,
+  error,
+  type = "text",
+  numberSpin,
+  multiple,
+}: EditElementProps): ReactElement => {
   const inputClasses = [
     type === "color"
       ? Styles.input_color
@@ -38,33 +44,18 @@ export const EditElement = <T extends FieldValues, U extends InputType>({
           ? Styles.input_range
           : Styles.input,
     size === undefined ? Styles.l : Styles[size],
-    !widthFixed && Styles.full_width,
-    errors !== undefined ? Styles.error : "",
+    fullWidth && Styles.full_width,
+    error && Styles.error,
     (register?.disabled || readonly) === true ? Styles.disabled : "",
     numberSpin === true ? "" : Styles.no_spin,
   ]
     .filter(Boolean)
     .join(" ");
 
-  const placeHolder = !register?.disabled ? placeholder : "";
-
-  const renderInput = () => (
-    <input
-      style={editWidth()}
-      className={inputClasses}
-      id={id}
-      type={type === null ? "text" : type}
-      multiple={multiple}
-      placeholder={placeHolder}
-      readOnly={readonly}
-      {...register}
-    />
-  );
-
-  if (register.disabled === true) {
-    return (
+  const renderInput = () =>
+    register.disabled ? (
       <input
-        style={editWidth()}
+        style={style}
         className={inputClasses}
         id={id}
         type={type === null ? "text" : type}
@@ -73,13 +64,23 @@ export const EditElement = <T extends FieldValues, U extends InputType>({
         value=""
         {...register}
       />
+    ) : (
+      <input
+        style={style}
+        className={inputClasses}
+        id={id}
+        type={type === null ? "text" : type}
+        multiple={multiple}
+        placeholder={placeholder}
+        readOnly={readonly}
+        {...register}
+      />
     );
-  }
 
   return (
     <>
       {size === "s" ? (
-        <InputContainerForSizeS display={!widthFixed ? "block" : "inlineBlock"}>
+        <InputContainerForSizeS display={fullWidth ? "block" : "inlineBlock"}>
           {renderInput()}
         </InputContainerForSizeS>
       ) : (
