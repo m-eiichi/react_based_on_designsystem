@@ -1,6 +1,5 @@
 import { type ReactElement } from "react";
 import { InputContainerForSizeS } from "@/components/ui_elements/input/input_container_for_size_s";
-
 import { EditElementProps } from "./types";
 import Styles from "./edit_element.module.css";
 

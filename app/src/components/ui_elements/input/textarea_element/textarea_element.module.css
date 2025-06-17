@@ -1,8 +1,6 @@
 @import "../../../../assets/styles/extend/input.css";
 
 .textarea {
-  width: 100%;
-
   &.fixed {
     resize: none;
   }

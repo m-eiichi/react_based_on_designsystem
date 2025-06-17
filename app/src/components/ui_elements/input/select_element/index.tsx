@@ -1,4 +1,4 @@
-import { type ReactElement } from "react";
+import { useEffect, type ReactElement } from "react";
 import {
   Controller,
   useFormContext,
@@ -14,32 +14,39 @@ import { SelectElementProps, OptionProps } from "./types";
  * <SelectElement/>コンポーネント
  *
  * @description <select/>要素の最小コンポーネント
+ *
  * @param {SelectElementProps} props types.ts参照
+ *
  * @returns {ReactElement} コンポーネント
  *
- * select コンポーネントは基本的にwidthとwidthFixedで調整してください。
  */
 export const SelectElement = ({
   name,
+  id,
   options,
   size = "l",
+  fullWidth = false,
   width,
-  widthFixed = true,
   placeholder,
-  disabled,
-  readonly,
+  disabled = false,
+  readonly = false,
   error,
-  externalOnChange,
-  externalOnBlur,
-  creatable,
+  onChange,
+  onBlur,
+  creatable = false,
 }: SelectElementProps): ReactElement => {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
 
+  useEffect(() => {
+    if (disabled) {
+      setValue(name, "");
+    }
+  }, [disabled, setValue, name]);
   // react-selectのスタイル上書き
 
   // 最大幅の上書き
   const selectMaxWidth = () => {
-    if (width && !widthFixed) {
+    if (width && fullWidth) {
       return width;
     } else {
       return "none";
@@ -47,7 +54,7 @@ export const SelectElement = ({
   };
   // 幅の上書き
   const selectWidth = () => {
-    if (widthFixed) {
+    if (!fullWidth) {
       if (width) {
         return width;
       }
@@ -114,6 +121,7 @@ export const SelectElement = ({
       boxShadow: "none",
       outline: state.isFocused ? "2px solid #b78f00" : errorStyle(),
       outlineOffset: "-1px",
+      border: error ? "none" : baseStyles.border,
       borderRadius: selectBorderRadius(),
       borderColor: state.isDisabled ? "#7f7f7f" : "#1a1a1a",
       backgroundColor: state.isDisabled ? "#f2f2f2" : "#ffffff",
@@ -164,12 +172,13 @@ export const SelectElement = ({
     return (
       <Component
         {...field}
+        id={id}
         inputId={name}
         styles={selectStyles}
         options={options}
         isDisabled={disabled || readonly}
         value={
-          field.value !== ""
+          field.value !== "" && !disabled
             ? options?.find((option) => option.value === field.value) ?? {
                 label: field.value,
                 value: field.value,
@@ -192,11 +201,11 @@ export const SelectElement = ({
           }
 
           field.onChange(value);
-          externalOnChange?.(value);
+          onChange?.(value);
         }}
         onBlur={() => {
           field.onBlur(); // フォーカスが外れたことをフォームに通知
-          externalOnBlur?.(field.value); // 現在のvalueを外部に通知
+          onBlur?.(field.value); // 現在のvalueを外部に通知
         }}
         placeholder={placeholder}
       />
@@ -206,7 +215,7 @@ export const SelectElement = ({
   return (
     <>
       {size === "s" ? (
-        <InputContainerForSizeS display={!widthFixed ? "block" : "inlineBlock"}>
+        <InputContainerForSizeS display={fullWidth ? "block" : "inlineBlock"}>
           <Controller
             name={name}
             control={control}
